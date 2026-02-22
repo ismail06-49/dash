@@ -34,7 +34,7 @@ export default function HomeLayout({
                 <div className="flex items-center justify-between mb-8 pb-6 border-b border-sidebar-border">
                     <div className="flex items-center gap-3">
                         <Image src={Logo} alt="Logo" className="aspect-square w-12" />
-                        {/* <h1 className="text-2xl font-bold sm:block">Poultry Tracker</h1> */}
+                        <h1 className="text-2xl font-bold sm:block">Poultry Tracker</h1>
                     </div>
                 </div>
                 <ul className="space-y-2">
