@@ -4,6 +4,7 @@ import Image from "next/image";
 import Logo from "@/public/logo.png";
 import { LayoutDashboard, Plus, FileText, BarChart3, Menu, X } from "lucide-react";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function HomeLayout({
     children,
@@ -13,10 +14,10 @@ export default function HomeLayout({
     const [isOpen, setIsOpen] = useState(false);
 
     const navItems = [
-        { icon: LayoutDashboard, label: "Dashboard" },
-        { icon: Plus, label: "Add Record" },
-        { icon: FileText, label: "Records" },
-        { icon: BarChart3, label: "Reports" },
+        { icon: LayoutDashboard, label: "Dashboard", href: "/" },
+        { icon: Plus, label: "Add Record", href: "/addRecord" },
+        { icon: FileText, label: "Records", href: "/records" },
+        { icon: BarChart3, label: "Reports", href: "/reports" },
     ];
 
     return (
@@ -39,9 +40,11 @@ export default function HomeLayout({
                 </div>
                 <ul className="space-y-2">
                     {navItems.map((item) => (
-                        <li key={item.label} className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-sidebar-accent hover:text-sidebar-accent-foreground cursor-pointer transition-all duration-200">
-                            <item.icon size={20} />
-                            <span className="font-medium">{item.label}</span>
+                        <li key={item.label}>
+                            <Link href={item.href} onClick={() => setIsOpen(false)} className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-sidebar-accent hover:text-sidebar-accent-foreground cursor-pointer transition-all duration-200">
+                                <item.icon size={20} />
+                                <span className="font-medium">{item.label}</span>
+                            </Link>
                         </li>
                     ))}
                 </ul>

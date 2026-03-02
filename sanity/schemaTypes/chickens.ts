@@ -10,10 +10,6 @@ export const chickens = defineType({
             type: "number",
         }),
         defineField({
-            name: "name",
-            type: "string",
-        }),
-        defineField({
             name: "quantity",
             type: "number",
         }),
