@@ -5,7 +5,8 @@ export const EGGS_QUERY = defineQuery(`
         id,
         price,
         date,
-        quantity
+        quantity,
+        paymentMade
     }`)
 
     export const CHICKENS_QUERY = defineQuery(`
@@ -13,7 +14,8 @@ export const EGGS_QUERY = defineQuery(`
         id,
         price,
         date,
-        quantity
+        quantity,
+        paymentMade
     }`)
 
     export const FEED_QUERY = defineQuery(`
@@ -21,5 +23,6 @@ export const EGGS_QUERY = defineQuery(`
         id,
         price,
         date,
-        quantity
+        quantity,
+        paymentMade
     }`)

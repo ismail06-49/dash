@@ -21,5 +21,9 @@ export const eggs = defineType({
             name: "date",
             type: "date",
         }),
+        defineField({
+            name: "paymentMade",
+            type: "boolean",
+        }),
     ]
 })
