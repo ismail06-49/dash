@@ -70,27 +70,56 @@ export default function DashboardCharts({ records }: DashboardChartsProps) {
 
   const options = {
     responsive: true,
+    maintainAspectRatio: true,
     plugins: {
-      legend: { position: "top" as const },
-      title: { display: true, text: "Weekly Net Trend" },
+      legend: { 
+        position: "top" as const,
+        labels: {
+          font: { size: 12, weight: 500 },
+          padding: 12,
+          usePointStyle: true,
+        }
+      },
+      title: { 
+        display: true, 
+        text: "Weekly Net Trend",
+        font: { size: 16, weight: 600 },
+        padding: 16,
+      },
     },
     scales: {
       y: {
         beginAtZero: false,
+        grid: {
+          color: "rgba(0, 0, 0, 0.05)",
+          drawBorder: false,
+        },
         ticks: {
           callback: function (value: any) {
             return "DH " + value.toFixed(0);
           },
+          font: { size: 12 },
+        },
+      },
+      x: {
+        grid: {
+          display: false,
+          drawBorder: false,
+        },
+        ticks: {
+          font: { size: 12 },
         },
       },
     },
   };
 
   return (
-    <div className="mt-8">
-      <div className="card p-4">
-        <h2 className="text-lg font-medium mb-4">Weekly Comparison</h2>
-        <Line data={data} options={options} />
+    <div className="mt-6 lg:mt-8">
+      <div className="card p-4 sm:p-6 lg:p-8">
+        <h2 className="text-lg sm:text-xl lg:text-2xl font-bold mb-4 sm:mb-6 text-foreground">Weekly Comparison</h2>
+        <div className="w-full h-96 sm:h-80 md:h-96 lg:h-[450px]">
+          <Line data={data} options={{ ...options, maintainAspectRatio: false }} />
+        </div>
       </div>
     </div>
   );

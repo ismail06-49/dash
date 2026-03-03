@@ -43,54 +43,58 @@ export default async function Home() {
   const unpaidCount = records.filter((r) => !r.paymentMade).length;
 
   return (
-    <div className="min-h-screen p-4 sm:p-6">
-      <div className="max-w-6xl mx-auto">
-        <h1 className="text-3xl font-bold mb-8">Dashboard</h1>
+    <div className="min-h-screen bg-background text-foreground p-4 sm:p-6 lg:p-8">
+      <div className="max-w-7xl mx-auto">
+        <div className="mb-8 lg:mb-10">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold">Dashboard</h1>
+          <p className="text-muted-foreground text-sm sm:text-base mt-2">Weekly insights and financial overview</p>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="card p-6">
-            <p className="text-sm text-muted-foreground mb-2">Total Profits</p>
-            <p className="text-3xl font-bold text-green-600 dark:text-green-400">
+        {/* Summary Stats Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-6 lg:mb-8">
+          <div className="card p-4 sm:p-6 hover:shadow-lg transition-shadow">
+            <p className="text-xs sm:text-sm text-muted-foreground mb-2 font-medium">Total Profits</p>
+            <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-chart-2">
               +DH {totalProfits.toFixed(2)}
             </p>
           </div>
-          <div className="card p-6">
-            <p className="text-sm text-muted-foreground mb-2">Total Losses</p>
-            <p className="text-3xl font-bold text-red-600 dark:text-red-400">
+          <div className="card p-4 sm:p-6 hover:shadow-lg transition-shadow">
+            <p className="text-xs sm:text-sm text-muted-foreground mb-2 font-medium">Total Losses</p>
+            <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-destructive">
               -DH {totalLosses.toFixed(2)}
             </p>
           </div>
-          <div className="card p-6">
-            <p className="text-sm text-muted-foreground mb-2">Net</p>
-            <p className={`text-3xl font-bold ${
-              net >= 0
-                ? "text-green-600 dark:text-green-400"
-                : "text-red-600 dark:text-red-400"
+          <div className="card p-4 sm:p-6 hover:shadow-lg transition-shadow">
+            <p className="text-xs sm:text-sm text-muted-foreground mb-2 font-medium">Net</p>
+            <p className={`text-2xl sm:text-3xl lg:text-4xl font-bold ${
+              net >= 0 ? "text-chart-2" : "text-destructive"
             }`}>
-              {net >= 0 ? "+" : ""}{net.toFixed(2)}
+              {net >= 0 ? "+" : ""}{net.toFixed(2)} DH
             </p>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
-          <div className="card p-6">
-            <p className="text-sm text-muted-foreground mb-2">Paid Records</p>
-            <p className="text-3xl font-bold">{paidCount}</p>
+        {/* Payment Status Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-6 lg:mb-8">
+          <div className="card p-4 sm:p-6 hover:shadow-lg transition-shadow">
+            <p className="text-xs sm:text-sm text-muted-foreground mb-3 font-medium">Paid Records</p>
+            <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary">{paidCount}</p>
           </div>
-          <div className="card p-6">
-            <p className="text-sm text-muted-foreground mb-2">Unpaid Records</p>
-            <p className="text-3xl font-bold">{unpaidCount}</p>
+          <div className="card p-4 sm:p-6 hover:shadow-lg transition-shadow">
+            <p className="text-xs sm:text-sm text-muted-foreground mb-3 font-medium">Unpaid Records</p>
+            <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-accent">{unpaidCount}</p>
           </div>
         </div>
 
-        {/* charts section */}
+        {/* Chart Section */}
         <DashboardCharts records={records} />
 
-        <div className="mt-8 flex flex-wrap gap-2">
-          <Button asChild>
+        {/* Action Buttons */}
+        <div className="mt-8 lg:mt-10 flex flex-col sm:flex-row gap-2 sm:gap-3">
+          <Button asChild className="w-full sm:w-auto">
             <Link href="/records">View All Records</Link>
           </Button>
-          <Button asChild>
+          <Button asChild variant="secondary" className="w-full sm:w-auto">
             <Link href="/addRecord">Add New Record</Link>
           </Button>
         </div>

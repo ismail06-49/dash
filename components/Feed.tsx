@@ -3,6 +3,7 @@
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
 import { FeedSchema } from "@/schemas";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -23,18 +24,18 @@ const Feed = () => {
     }
 
     return (
-        <div className="min-h-screen flex items-center justify-center">
-            <div className="card p-6 max-w-2xl w-full mx-4">
-                <h1 className="text-2xl font-semibold text-center mb-4">Buy Feed</h1>
+        <div className="min-h-screen flex items-center justify-center p-4 sm:p-6">
+            <div className="card p-4 sm:p-6 lg:p-8 max-w-2xl w-full">
+                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-center mb-6 sm:mb-8">Buy Feed</h1>
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)}>
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
                             <FormField
                                 control={form.control}
                                 name="date"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Date</FormLabel>
+                                        <FormLabel className="text-xs sm:text-sm">Date</FormLabel>
                                         <FormControl>
                                             <Input
                                                 {...field}
@@ -52,7 +53,7 @@ const Feed = () => {
                                 name="quantity"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Quantity</FormLabel>
+                                        <FormLabel className="text-xs sm:text-sm">Quantity</FormLabel>
                                         <FormControl>
                                             <Input
                                                 {...field}
@@ -72,7 +73,7 @@ const Feed = () => {
                                 name="price"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Price</FormLabel>
+                                        <FormLabel className="text-xs sm:text-sm">Price</FormLabel>
                                         <FormControl>
                                             <Input
                                                 {...field}
@@ -88,8 +89,11 @@ const Feed = () => {
                                 )}
                             />
                         </div>
-                        <div className="sm:col-span-3 mt-4">
-                            <Button type="submit" className="w-full">Submit</Button>
+                        <div className="mt-6 sm:mt-8 flex gap-3">
+                            <Button type="submit" className="flex-1">Submit</Button>
+                            <Button variant="outline" asChild className="flex-1">
+                                <Link href="/records">Cancel</Link>
+                            </Button>
                         </div>
                     </form>
                 </Form>
