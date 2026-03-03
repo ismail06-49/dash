@@ -117,7 +117,7 @@ export default function DashboardCharts({ records }: DashboardChartsProps) {
     <div className="mt-6 lg:mt-8">
       <div className="card p-4 sm:p-6 lg:p-8">
         <h2 className="text-lg sm:text-xl lg:text-2xl font-bold mb-4 sm:mb-6 text-foreground">Weekly Comparison</h2>
-        <div className="w-full h-96 sm:h-80 md:h-96 lg:h-[450px]">
+        <div className="w-full h-96 sm:h-80 md:h-96 lg:h-112.5">
           <Line data={data} options={{ ...options, maintainAspectRatio: false }} />
         </div>
       </div>
