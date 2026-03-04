@@ -25,7 +25,7 @@ export default function HomeLayout({
             {/* Mobile Menu Button */}
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className={`md:hidden fixed top-4 left-4 ${isOpen ? 'bg-transparent text-transparent' : 'bg-sidebar text-sidebar-foreground'} z-50 p-2 rounded-lg`}
+                className="md:hidden fixed top-4 right-4 bg-sidebar text-sidebar-foreground z-50 p-2 rounded-lg"
             >
                 {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>

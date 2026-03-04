@@ -8,6 +8,7 @@ import { EggsSchema } from "@/schemas";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 
 const Eggs = () => {
     const form = useForm<z.infer<typeof EggsSchema>>({
@@ -16,6 +17,7 @@ const Eggs = () => {
             quantity: 0,
             price: 0,
             date: new Date().toISOString().split('T')[0],
+            paymentMade: false,
         },
     });
 
@@ -88,11 +90,26 @@ const Eggs = () => {
                                     </FormItem>
                                 )}
                             />
+                            <FormField
+                                control={form.control}
+                                name="paymentMade"
+                                render={({ field }) => (
+                                    <FormItem className="flex items-center gap-2">
+                                        <FormControl>
+                                            <Checkbox
+                                                checked={field.value}
+                                                onCheckedChange={field.onChange}
+                                            />
+                                        </FormControl>
+                                        <FormLabel className="text-xs sm:text-sm">Payment Made</FormLabel>
+                                    </FormItem>
+                                )}
+                            />
                         </div>
                         <div className="mt-6 sm:mt-8 flex gap-3">
                             <Button type="submit" className="flex-1">Submit</Button>
                             <Button variant="outline" asChild className="flex-1">
-                                <Link href="/records">Cancel</Link>
+                                <Link href="/addRecord">Cancel</Link>
                             </Button>
                         </div>
                     </form>

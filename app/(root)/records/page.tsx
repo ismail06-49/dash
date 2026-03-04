@@ -4,9 +4,6 @@ import { EGGS_QUERY, CHICKENS_QUERY, FEED_QUERY } from "@/sanity/lib/queries";
 import RecordsTable from "@/components/RecordsTable";
 import {
   Record,
-  isProfit,
-  getDisplayPrice,
-  getRowAmount,
 } from "@/lib/records";
 
 async function getRecords() {
