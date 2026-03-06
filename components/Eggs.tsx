@@ -9,8 +9,16 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
+import { useState, useTransition } from "react";
+import { addEggs } from "@/lib/actions";
+
 
 const Eggs = () => {
+
+    const [error, setError] = useState<string | undefined>('');
+    const [success, setSuccess] = useState<string | undefined>('');
+    const [isPending, startTransition] = useTransition();
+
     const form = useForm<z.infer<typeof EggsSchema>>({
         resolver: zodResolver(EggsSchema),
         defaultValues: {
@@ -22,7 +30,17 @@ const Eggs = () => {
     });
 
     const onSubmit = (values: z.infer<typeof EggsSchema>) => {
-        console.log(values);
+        setError('');
+        setSuccess('');
+
+        startTransition(async () => {
+            const response = await addEggs(values);
+            if (response.error) {
+                setError(response.error);
+            } else {
+                setSuccess(response.success);
+            }
+        })
     }
 
     return (
