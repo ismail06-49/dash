@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useState, useTransition } from "react";
+import { useRouter } from "next/navigation";
 import { addEggs } from "@/lib/actions";
 
 
@@ -18,6 +19,7 @@ const Eggs = () => {
     const [error, setError] = useState<string | undefined>('');
     const [success, setSuccess] = useState<string | undefined>('');
     const [isPending, startTransition] = useTransition();
+    const router = useRouter();
 
     const form = useForm<z.infer<typeof EggsSchema>>({
         resolver: zodResolver(EggsSchema),
@@ -39,6 +41,7 @@ const Eggs = () => {
                 setError(response.error);
             } else {
                 setSuccess(response.success);
+                router.push('/records');
             }
         })
     }

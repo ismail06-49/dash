@@ -9,8 +9,17 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
+import { useState, useTransition } from "react";
+import { useRouter } from "next/navigation";
+import { addFeed } from "@/lib/actions";
 
 const Feed = () => {
+
+    const [error, setError] = useState<string | undefined>('');
+    const [success, setSuccess] = useState<string | undefined>('');
+    const [isPending, startTransition] = useTransition();
+    const router = useRouter();
+
     const form = useForm<z.infer<typeof FeedSchema>>({
         resolver: zodResolver(FeedSchema),
         defaultValues: {
@@ -22,7 +31,18 @@ const Feed = () => {
     });
 
     const onSubmit = (values: z.infer<typeof FeedSchema>) => {
-        console.log(values);
+        setError('');
+        setSuccess('');
+
+        startTransition(async () => {
+            const response = await addFeed(values);
+            if (response.error) {
+                setError(response.error);
+            } else {
+                setSuccess(response.success);
+                router.push('/records');
+            }
+        })
     }
 
     return (
