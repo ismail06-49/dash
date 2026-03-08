@@ -1,5 +1,15 @@
 import { defineQuery } from "next-sanity";
 
+export const AUTHOR_BY_GEMAIL_QUERY =
+    defineQuery(`*[_type == 'user' && email == $email][0]{
+        _id,
+        id,
+        name,
+        username,
+        email,
+        password,
+    }`);
+
 export const EGGS_QUERY = defineQuery(`
     *[_type == 'eggs' && defined(quantity)] | order(date desc) {
         id,
