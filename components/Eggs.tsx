@@ -12,6 +12,8 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { addEggs } from "@/lib/actions";
+import { FormSuccess } from "@/components/form-success";
+import { FormError } from "@/components/form-error";
 
 
 const Eggs = () => {
@@ -127,9 +129,22 @@ const Eggs = () => {
                                 )}
                             />
                         </div>
+                        <FormError message={error} />
+                        <FormSuccess message={success} />
                         <div className="mt-6 sm:mt-8 flex gap-3">
-                            <Button type="submit" className="flex-1">Submit</Button>
-                            <Button variant="outline" asChild className="flex-1">
+                            <Button
+                                type="submit"
+                                className="flex-1"
+                                disabled={isPending}
+                            >
+                                Submit
+                            </Button>
+                            <Button
+                                variant="outline"
+                                asChild
+                                className="flex-1"
+                                disabled={isPending}
+                            >
                                 <Link href="/addRecord">Cancel</Link>
                             </Button>
                         </div>
