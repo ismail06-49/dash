@@ -1,23 +1,22 @@
-import { client } from "@/sanity/lib/client";
 import { EGGS_QUERY, CHICKENS_QUERY, FEED_QUERY } from "@/sanity/lib/queries";
-
 import RecordsTable from "@/components/RecordsTable";
 import {
   Record,
 } from "@/lib/records";
-import { SanityLive } from "@/sanity/lib/live";
+import { sanityFetch, SanityLive } from "@/sanity/lib/live";
 
 async function getRecords() {
-  const [eggs, chickens, feed] = await Promise.all([
-    client.fetch(EGGS_QUERY),
-    client.fetch(CHICKENS_QUERY),
-    client.fetch(FEED_QUERY),
+  
+  const [{data: eggsData}, {data: chickensData}, {data: feedData}] = await Promise.all([
+    sanityFetch({ query: EGGS_QUERY }),
+    sanityFetch({ query: CHICKENS_QUERY }),
+    sanityFetch({ query: FEED_QUERY }),
   ]);
 
   const records: Record[] = [
-    ...eggs.map((e: any) => ({ ...e, _type: "eggs" as const })),
-    ...chickens.map((c: any) => ({ ...c, _type: "chickens" as const })),
-    ...feed.map((f: any) => ({ ...f, _type: "feed" as const })),
+    ...eggsData.map((e: any) => ({ ...e, _type: "eggs" as const })),
+    ...chickensData.map((c: any) => ({ ...c, _type: "chickens" as const })),
+    ...feedData.map((f: any) => ({ ...f, _type: "feed" as const })),
   ].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   return records;

@@ -13,9 +13,11 @@ import { sanityFetch, SanityLive } from "@/sanity/lib/live";
 
 async function getRecords(): Promise<Record[]> {
   
-  const {data: eggsData} = await sanityFetch({ query: EGGS_QUERY });
-  const {data: chickensData} = await sanityFetch({ query: CHICKENS_QUERY });
-  const {data: feedData} = await sanityFetch({ query: FEED_QUERY });
+  const [{data: eggsData}, {data: chickensData}, {data: feedData}] = await Promise.all([
+      sanityFetch({ query: EGGS_QUERY }),
+      sanityFetch({ query: CHICKENS_QUERY }),
+      sanityFetch({ query: FEED_QUERY }),
+  ]);
 
   const records: Record[] = [
     ...eggsData.map((e: any) => ({ ...e, _type: "eggs" as const })),
