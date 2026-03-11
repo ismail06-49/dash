@@ -19,6 +19,8 @@ async function getRecords() {
     ...feedData.map((f: any) => ({ ...f, _type: "feed" as const })),
   ].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
+  console.log("Fetched records:", records);
+
   return records;
 }
 
@@ -39,9 +41,3 @@ export default async function RecordsPage() {
     </div>
   );
 }
-
-// -----------------------------------------------------------------------------
-// Client component
-// -----------------------------------------------------------------------------
-
-
