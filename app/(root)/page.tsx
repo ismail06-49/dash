@@ -9,7 +9,7 @@ import {
   getRowAmount,
 } from "@/lib/records";
 import DashboardCharts from "@/components/DashboardCharts";
-import { sanityFetch } from "@/sanity/lib/live";
+import { sanityFetch, SanityLive } from "@/sanity/lib/live";
 
 async function getRecords(): Promise<Record[]> {
   
@@ -97,6 +97,7 @@ export default async function Home() {
           </Button>
         </div>
       </div>
+      <SanityLive />
     </div>
   );
 }

@@ -5,6 +5,7 @@ import RecordsTable from "@/components/RecordsTable";
 import {
   Record,
 } from "@/lib/records";
+import { SanityLive } from "@/sanity/lib/live";
 
 async function getRecords() {
   const [eggs, chickens, feed] = await Promise.all([
@@ -35,6 +36,7 @@ export default async function RecordsPage() {
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-8 sm:mb-12">Records</h1>
         <RecordsTable records={records} />
       </div>
+      <SanityLive />
     </div>
   );
 }

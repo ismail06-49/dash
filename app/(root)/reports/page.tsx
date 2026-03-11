@@ -8,6 +8,7 @@ import {
 } from "@/lib/records";
 import { format, startOfMonth, endOfMonth, eachMonthOfInterval, startOfYear } from "date-fns";
 import { Egg, Feather, ShoppingCart, TrendingUp, TrendingDown, Wallet } from "lucide-react";
+import { SanityLive } from "@/sanity/lib/live";
 
 async function getRecords(): Promise<Record[]> {
   const [eggs, chickens, feed] = await Promise.all([
@@ -372,6 +373,7 @@ export default async function ReportsPage() {
           </div>
         </div>
       </div>
+      <SanityLive />
     </div>
   );
 }
