@@ -6,6 +6,7 @@ export interface Record {
   price: number;
   date: string;
   paymentMade: boolean;
+  type?: string;
 }
 
 export function isProfit(type: string): boolean {

@@ -60,13 +60,14 @@ export const addFeed = async (values: z.infer<typeof FeedSchema>) => {
         return { error: 'Invalid feed data provided.' };
     }
 
-    const { date, quantity, price, paymentMade } = validatedData.data;
+    const { date, quantity, price, type, paymentMade } = validatedData.data;
 
     const newFeedEntry = await writeClient.create({
         _type: 'feed',
         date,
         quantity,
         price,
+        type,
         paymentMade,
     })
 

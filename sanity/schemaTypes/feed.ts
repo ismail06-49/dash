@@ -25,5 +25,18 @@ export const feed = defineType({
             name: "paymentMade",
             type: "boolean",
         }),
+        defineField({
+            name: "type",
+            type: "string",
+            options: {
+                list: [
+                    { title: "B", value: "b" },
+                    { title: "D", value: "d" },
+                    { title: "R", value: "r" },
+                    { title: "2", value: "2" },
+                ],
+                layout: "dropdown",
+            },
+        }),
     ]
 })

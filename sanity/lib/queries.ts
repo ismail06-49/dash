@@ -34,5 +34,6 @@ export const EGGS_QUERY = defineQuery(`
         price,
         date,
         quantity,
+        type,
         paymentMade
     }`)

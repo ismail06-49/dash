@@ -24,7 +24,14 @@ function getIcon(type: string) {
   }
 }
 
-function getTypeLabel(type: string) {
+function getTypeLabel(record: Record) {
+  if (record._type === "feed") {
+    return record.type ? record.type.charAt(0).toUpperCase() + record.type.slice(1) : "Feed";
+  }
+  return record._type.charAt(0).toUpperCase() + record._type.slice(1);
+}
+
+function getTypeLabelForFilter(type: string) {
   return type.charAt(0).toUpperCase() + type.slice(1);
 }
 
@@ -76,7 +83,7 @@ export default function RecordsTable({ records }: RecordsTableProps) {
                 }`}
                 onClick={() => setTypeFilter(t)}
               >
-                {t === "all" ? "All" : getTypeLabel(t)}
+                {t === "all" ? "All" : getTypeLabelForFilter(t)}
               </button>
             ))}
           </div>
@@ -144,7 +151,9 @@ export default function RecordsTable({ records }: RecordsTableProps) {
                     >
                       <td className="px-3 sm:px-4 lg:px-6 py-3 sm:py-4 flex items-center gap-2">
                         {getIcon(record._type)}
-                        <span className="text-xs sm:text-sm font-medium">{getTypeLabel(record._type)}</span>
+                        <span className="text-xs sm:text-sm font-medium">{
+                          getTypeLabel(record)}
+                        </span>
                       </td>
                       <td className="px-3 sm:px-4 lg:px-6 py-3 sm:py-4 text-xs sm:text-sm">
                         {format(new Date(record.date), "MMM d, yyyy")}

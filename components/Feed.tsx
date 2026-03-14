@@ -28,6 +28,7 @@ const Feed = () => {
             quantity: 0,
             price: 0,
             date: new Date().toISOString().split('T')[0],
+            type: 'b',
             paymentMade: false,
         },
     });
@@ -109,6 +110,23 @@ const Feed = () => {
                                             />
                                         </FormControl>
                                         <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="type"
+                                render={({ field }) => (
+                                    <FormItem className="flex items-center gap-2">
+                                        <FormLabel className="text-xs sm:text-sm">Type</FormLabel>
+                                        <FormControl>
+                                            <select {...field} className="w-full border rounded-md px-3 py-2">
+                                                <option value="b">B</option>
+                                                <option value="d">D</option>
+                                                <option value="r">R</option>
+                                                <option value="2">2</option>
+                                            </select>
+                                        </FormControl>
                                     </FormItem>
                                 )}
                             />

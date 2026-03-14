@@ -18,5 +18,6 @@ export const FeedSchema = z.object({
     date: z.string(),
     quantity: z.number(),
     price: z.number(),
+    type: z.enum(['b', 'd', 'r', '2']),
     paymentMade: z.boolean(),
 })
